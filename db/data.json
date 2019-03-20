@@ -1,67 +1,56 @@
- {
+{
     "server": {
-        "updated": "never",
-        "Version": "1.13.2",
-        "last_seen": 1540842001,
-        "online": 0
+        "gametype": "Survival Multiplayer",
+        "version": "1.13.2",
+        "isonline": true,
+        "last_seen": 1553117364,
+        "players_online": 1,
+        "max_seen_online": 1
     },
     "players": {
-        "fol_ssve": {
-            "last_seen": 1552747141
-        },
         "MarcTVde": {
-            "last_seen": 1552837681
-        },
-        "le_phil_de": {
-            "last_seen": 1527584461
-        },
-        "danaro610": {
-            "last_seen": 1527608701
-        },
-        "hansirockt": {
-            "last_seen": 1552551961
-        },
-        "amazingstefan": {
-            "last_seen": 1528200636
-        },
-        "Jo0001": {
-            "last_seen": 1529254122
+            "isonline": true,
+            "last_seen": 1553117364
         },
         "Lepante101": {
-            "last_seen": 1552725661
-        },
-        "AndySchneider": {
-            "last_seen": 1551638900
-        },
-        "Baumeister271": {
-            "last_seen": 1550855461
-        },
-        "bloy07": {
-            "last_seen": 1548709441
+            "isonline": false,
+            "last_seen": 1552328175
         },
         "zeangrygerman": {
-            "last_seen": 1552647181
+            "isonline": false,
+            "last_seen": 1552327664
         },
-        "DuWurdestGehackt": {
-            "last_seen": 1551726961
+        "hansirockt": {
+            "isonline": false,
+            "last_seen": 1551128064
         },
         "Mzungu_Dan": {
-            "last_seen": 1551567181
+            "isonline": false,
+            "last_seen": 1551127281
         },
-        "BlockBastian90": {
-            "last_seen": 1552730221
+        "bloy07": {
+            "isonline": false,
+            "last_seen": 1548362955
         },
-        "KarstenKue": {
-            "last_seen": 1552330861
+        "fol_ssve": {
+            "isonline": false,
+            "last_seen": 1531740841
         },
-        "RPJESUS": {
-            "last_seen": 1551296461
+        "Jo0001": {
+            "isonline": false,
+            "last_seen": 1529254122
         },
-        "BloyPlayer": {
-            "last_seen": 1552331762
+        "amazingstefan": {
+            "isonline": false,
+            "last_seen": 1528200636
         },
-        "LordBacchus": {
-            "last_seen": 1552698301
+        "danaro610": {
+            "isonline": false,
+            "last_seen": 1527608701
+        },
+        "le_phil_de": {
+            "isonline": false,
+            "last_seen": 1527584461
         }
     }
 }

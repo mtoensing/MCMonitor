@@ -1,36 +1,43 @@
 <?php
 
-class MCPlayer {
-	/**
-	 * @return bool
-	 */
-	public function isIsonline() {
-		return $this->isonline;
-	}
+class MCPlayer
+{
 
-	/**
-	 * @param bool $isonline
-	 */
-	public function setIsonline( $isonline ) {
-		$this->isonline = $isonline;
-	}
+    public $isonline = false;
+    public $last_seen = 0;
 
-	/**
-	 * @return int
-	 */
-	public function getLastseen() {
-		return $this->lastseen;
-	}
+    /**
+     * @return bool
+     */
+    public function isIsonline()
+    {
+        return $this->isonline;
+    }
 
-	/**
-	 * @param int $lastseen
-	 */
-	public function setLastseen( $lastseen ) {
-		$this->lastseen = $lastseen;
-	}
+    /**
+     * @param bool $isonline
+     */
+    public function setIsonline($isonline)
+    {
+        $this->isonline = $isonline;
+    }
 
-	public $isonline = false;
-	public $lastseen = 0;
+    /**
+     * @return int
+     */
+    public function getLastseen()
+    {
+        return $this->last_seen;
+    }
+
+    /**
+     * @param int $lastseen
+     */
+    public function setLastseen($last_seen)
+    {
+        $this->last_seen = $last_seen;
+    }
+
 
 }
 
