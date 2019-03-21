@@ -5,18 +5,18 @@
         "gametype": "Survival Multiplayer",
         "version": "1.13.2",
         "isonline": true,
-        "last_seen": 1553201736,
-        "players_online": 2,
+        "last_seen": 1553202557,
+        "players_online": 1,
         "max_seen_online": 2
     },
     "players": {
         "hansirockt": {
             "isonline": true,
-            "last_seen": 1553201736
+            "last_seen": 1553202557
         },
         "zeangrygerman": {
-            "isonline": true,
-            "last_seen": 1553201736
+            "isonline": false,
+            "last_seen": 1553202117
         },
         "MarcTVde": {
             "isonline": false,

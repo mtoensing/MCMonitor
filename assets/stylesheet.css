@@ -1,3 +1,7 @@
+.mcmonitor {
+    max-width: 500px;
+}
+
 .online {
     color: darkgreen;
     letter-spacing: 0.1em;
@@ -8,22 +12,22 @@
 }
 
 body {
-      background-image: url('mcbg.jpg');
-      background-color: #CFC3E1;
-      background-size:cover;
+    background-image: url('mcbg.jpg');
+    background-color: #CFC3E1;
+    background-size: cover;
 }
 
 table {
-  margin-bottom: 5em;
+    margin-bottom: 5em;
 }
 
 tbody {
-  background: white;
+    background: white;
 }
 
 thead {
-background: white;
-font-weight: 700;
+    background: white;
+    font-weight: 700;
 }
 
 h1 {
@@ -32,7 +36,13 @@ h1 {
     text-shadow: 1px 1px 6px #000;
 }
 
+h5 {
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 1px 1px 6px #000;
+}
+
 footer {
-  background: white;
-  padding: 8px;
+    background: white;
+    padding: 8px;
 }

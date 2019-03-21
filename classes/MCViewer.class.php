@@ -21,6 +21,7 @@ class MCViewer
         $this->address = $this->json->server->address;
         $this->hostname = $this->json->server->hostname;
         $this->players_online = $this->json->server->players_online;
+        $this->max_seen_online = $this->json->server->max_seen_online;
     }
 
     /**
@@ -30,6 +31,24 @@ class MCViewer
     {
         return $this->address;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMaxSeenOnline()
+    {
+        return $this->max_seen_online;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlayersOnline()
+    {
+        return $this->players_online;
+    }
+
+
 
     /**
      * @return string
@@ -92,6 +111,32 @@ class MCViewer
         }
 
         return $html;
+    }
+
+    public function getPlayerList(){
+
+        $html = '<div class="list-group">';
+
+        foreach ($this->json->players as $playername => $player_meta) {
+
+            if($player_meta->isonline){
+                $status_class = 'active list-group-item-success';
+                $status = 'online';
+
+            } else {
+                $status_class = 'disabled';
+                $status = $this->time2str($player_meta->last_seen);
+            }
+
+            $html .= '<div class="list-group-item list-group-item-action flex-column align-items-start ' . $status_class . '">';
+            $html .= '<div class="d-flex w-100 justify-content-between"><div class="mb-1">' . $playername . '</div><small>' . $status . '</small></div>';
+            $html .= "</div>\n";
+        }
+
+        $html .= '</div>';
+
+        return $html;
+
     }
 
     public function time2str($ts)
