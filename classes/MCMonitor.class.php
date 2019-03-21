@@ -15,6 +15,7 @@ class MCMonitor
     public $online_status = 'offline';
     public $address = '';
     public $port = 25565;
+    public $hostname = '';
     public $timeout = 1;
     public $error = Array();
     public $json = '';
@@ -73,9 +74,12 @@ class MCMonitor
     {
         $arr = Array();
 
+        $arr['hostname'] = $this->hostname;
+        $arr['address'] = $this->address;
+        $arr['gametype'] = $this->json->server->gametype;
+        $arr['version'] = $this->json->server->version;
+
         if ($this->isOnline()) {
-            $arr['gametype'] = $this->gametype;
-            $arr['version'] = $this->version;
             $arr['isonline'] = true;
             $arr['last_seen'] = time();
             $arr['players_online'] = $this->getOnlinePlayerNumber();
@@ -86,8 +90,7 @@ class MCMonitor
                 $arr['max_seen_online'] = $this->json->server->max_seen_online;
             }
         } else {
-            $arr['gametype'] = $this->json->server->gametype;
-            $arr['version'] = $this->json->server->version;
+
             $arr['isonline'] = false;
             $arr['players_online'] = 0;
             $arr['last_seen'] = $this->json->server->last_seen;
@@ -224,7 +227,9 @@ class MCMonitor
 
         $this->info = $this->query->GetInfo();
         $this->version = $this->info["Version"];
+        $this->hostname = $this->info["HostName"];
         $this->getLIVEGameType();
+
 
     }
 

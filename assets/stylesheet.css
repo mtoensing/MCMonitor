@@ -1,0 +1,38 @@
+.online {
+    color: darkgreen;
+    letter-spacing: 0.1em;
+}
+
+.offline {
+    color: darkred;
+}
+
+body {
+      background-image: url('mcbg.jpg');
+      background-color: #CFC3E1;
+      background-size:cover;
+}
+
+table {
+  margin-bottom: 5em;
+}
+
+tbody {
+  background: white;
+}
+
+thead {
+background: white;
+font-weight: 700;
+}
+
+h1 {
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 1px 1px 6px #000;
+}
+
+footer {
+  background: white;
+  padding: 8px;
+}
