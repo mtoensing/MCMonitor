@@ -4,6 +4,7 @@ $json = json_decode($string);
 
 
 echo "Server last seen " . time2str($json->server->last_seen) . "<br>";
+echo "Players online: " . $json->server->players_online . "<br>";
 
 foreach ($json->players as $player => $value) {
     echo $player ." - " . time2str($value->last_seen) . '<br>';

@@ -10,15 +10,5 @@ $mcmonitor = new MCMonitor(
 	1
 );
 
-
-//echo $mcmonitor->getOnlineStatus();
-//echo $mcmonitor->gametype;
-//echo $mcmonitor->version;
-
-//var_dump($mcmonitor->players);
-
-//echo json_encode($mcmonitor->players,JSON_PRETTY_PRINT);
-
-
-echo $mcmonitor->getJSON();
+//echo $mcmonitor->getJSON();
 $mcmonitor->saveJSON();
