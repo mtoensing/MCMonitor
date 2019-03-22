@@ -98,7 +98,7 @@ class MCMonitor
         }
 
         $this->meta = $arr;
-        
+
     }
 
     public function getJSON()
