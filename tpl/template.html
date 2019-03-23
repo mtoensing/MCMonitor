@@ -25,7 +25,7 @@
 </head>
 <body>
 <div class="container mcmonitor">
-    <h1>Minecraft Server Info</h1>
+    <h1 class="pt-2">Minecraft Server Info</h1>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <td>Overviewer Map</td>
-            <td><a href="[@overviewer_url]">[@overviewer_url]</a> [@overviewer_last_updated]</td>
+            <td><a href="[@overviewer_url]">[@overviewer_url]</a> <span class="text-muted">[@overviewer_last_updated]</span></td>
         </tr>
         <tr>
             <td>HostName</td>
@@ -63,11 +63,12 @@
     <h5>Players ([@players_online] online)</h5>
     [@playerlist]
 
-    <footer class="mt-2 page-footer font-small blue pt-4">
+    <footer class="mt-4 p-4 page-footer font-small blue pt-4">
         <p>Lief früher <a href="https://marc.tv/?p=27834">auf einem Raspberry Pi 3B+</a>. Heute auf <a
                 href="https://marc.tv/?p=28639">meinem Synology NAS</a>.</p>Du willst mitspielen? Melde dich <a
                 href="https://marc.tv/minecraft-auf-dem-mac/">im
             Blogartikel</a>.<p>
+        <p>Generiert mit dem <a href="https://github.com/mtoensing/MCMonitor">MCMonitor</a></p>
     </footer>
 
 </body>

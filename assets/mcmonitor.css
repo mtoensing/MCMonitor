@@ -1,5 +1,6 @@
 .mcmonitor {
     max-width: 700px;
+
 }
 
 .online {
@@ -31,18 +32,18 @@ thead {
 }
 
 h1 {
-    color: #fff;
+color: #fff;
     font-weight: 700;
     text-shadow: 1px 1px 6px #000;
+
 }
 
 h5 {
-    color: #fff;
+color: #fff;
     font-weight: 700;
     text-shadow: 1px 1px 6px #000;
 }
 
 footer {
-    background: white;
-    padding: 8px;
+    background-color: rgba(245, 245, 245, 0.8);
 }
