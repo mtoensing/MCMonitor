@@ -47,3 +47,16 @@ color: #fff;
 footer {
     background-color: rgba(245, 245, 245, 0.8);
 }
+
+.dot {
+    height: 11px;
+    width: 11px;
+    background-color: darkred;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.online .dot {
+    background-color: darkgreen;
+}

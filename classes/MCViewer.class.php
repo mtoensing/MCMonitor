@@ -209,11 +209,13 @@ class MCViewer
 
     public function getPlayerList()
     {
-        $html = '<div class="list-group">';
+        $html = '';
+
 
         foreach ($this->json->players as $playername => $player_meta) {
+
             if ($player_meta->isonline) {
-                $status_class = '';
+                $status_class = 'online';
                 $status = 'online';
                 $status_user_class = 'text-success';
             } else {
@@ -222,12 +224,13 @@ class MCViewer
                 $status_user_class = '';
             }
 
-            $html .= '<div class="list-group-item flex-column ' . $status_class . '">';
-            $html .= '<div class="d-flex w-100 justify-content-between"><div class="mb-1 "><strong>' . $playername . '</strong></div><div class="' . $status_user_class . '">' . $status . '</div></div>';
-            $html .= "</div>\n";
+            $html .= '<tr class="' . $status_class .'"><td><span class="dot"></span> ' . $playername . '</td>';
+            $html .= '<td>' . $status . '</td></tr>';
+
+
         }
 
-        $html .= '</div>';
+        $html .= '';
 
         return $html;
     }
