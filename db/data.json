@@ -1,17 +1,17 @@
 {
     "server": {
-        "hostname": null,
+        "hostname": "Welcome to the new Pudel Map. Online since 2012.",
         "address": "u5xvqz2hcvrlrpgm.myfritz.net",
         "gametype": "Survival Multiplayer",
         "version": "1.13.2",
-        "isonline": false,
+        "isonline": true,
+        "last_seen": 1553362650,
         "players_online": 0,
-        "last_seen": 1553288776,
         "max_seen_online": 2
     },
     "players": {
         "hansirockt": {
-            "isonline": true,
+            "isonline": false,
             "last_seen": 1553202557
         },
         "zeangrygerman": {
