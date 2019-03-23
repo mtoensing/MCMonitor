@@ -10,5 +10,5 @@ $mcmonitor = new MCMonitor(
 	1
 );
 
-//echo $mcmonitor->getJSON();
+
 $mcmonitor->saveJSON();

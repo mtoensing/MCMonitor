@@ -8,10 +8,8 @@ $mcviewer = new MCViewer(
     "db/data.json"
 );
 
-
 $mcviewer ->setOverviewerPath('iso');
 
 echo $mcviewer->getOutput("https://mc.marc.tv/iso/");
-
 
 ?>

@@ -92,6 +92,7 @@ class MCMonitor
         } else {
 
             $arr['isonline'] = false;
+            $arr['hostname'] = $this->json->server->hostname;;
             $arr['players_online'] = 0;
             $arr['last_seen'] = $this->json->server->last_seen;
             $arr['max_seen_online'] = $this->json->server->max_seen_online;
