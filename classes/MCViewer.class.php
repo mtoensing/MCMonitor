@@ -9,6 +9,8 @@ class MCViewer
     public $version ='';
     public $isonline = '';
     public $tpl;
+    public $overviewer_url = '';
+    public $overviewer_path = false;
 
     public function __construct($json_path)
     {
@@ -23,11 +25,57 @@ class MCViewer
         $this->players_online = $this->json->server->players_online;
         $this->max_seen_online = $this->json->server->max_seen_online;
 
-        $this->fillTemplate();
+
     }
 
-    public function getOutput()
+    /**
+     * @param bool $overviewer_path
+     */
+    public function setOverviewerPath($overviewer_path)
     {
+        $this->overviewer_path = $overviewer_path;
+    }
+
+
+
+    public function getMapCreatedTime()
+    {
+        if($this->overviewer_path){
+
+            $fullpath = $this->overviewer_path. '/index.html';
+
+            if (file_exists($fullpath)) {
+
+                $map_ts = filemtime($fullpath);
+                $map_created_time = $this->time2str($map_ts);
+
+                return '(generated ' . $map_created_time.')';
+            }
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOverviewerUrl()
+    {
+        return $this->overviewer_url;
+    }
+
+    /**
+     * @param mixed $overviewer_url
+     */
+    public function setOverviewerUrl($overviewer_url)
+    {
+        $this->overviewer_url = $overviewer_url;
+    }
+
+    public function getOutput($overviewer_url = '')
+    {
+        $this->setOverviewerUrl($overviewer_url);
+
+
+        $this->fillTemplate();
         $html = $this->tpl->output();
 
         if ($html) {
@@ -48,6 +96,28 @@ class MCViewer
         $this->tpl->set("gametype", $this->getGametype());
         $this->tpl->set("players_online", $this->getPlayersOnline());
         $this->tpl->set("max_seen_online", $this->getMaxSeenOnline());
+        $this->tpl->set("overviewer_url", $this->overviewer_url);
+
+        $created_time = $this->getMapCreatedTime();
+
+        if($created_time){
+            $this->tpl->set("overviewer_last_updated", $created_time);
+        } else {
+            $this->tpl->set("overviewer_last_updated", '');
+        }
+
+    }
+
+    public function getProgressMessage($filepath)
+    {
+        if (file_exists($filepath)) {
+            $file = file_get_contents($filepath);
+            $json = json_decode($file);
+            $message = $json->message;
+            return $message;
+        } else {
+            return '';
+        }
     }
 
     /**
