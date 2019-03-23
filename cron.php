@@ -10,13 +10,15 @@ $mcmonitor = new MCMonitor(
 	1
 );
 
+$mcmonitor->saveJSON();
+
 $mcviewer = new MCViewer(
 	"db/data.json"
 );
 
-$mcviewer ->setOverviewerPath('iso');
+$mcviewer->setOverviewerPath( 'iso' );
 
-file_put_contents('index.php',$mcviewer->getOutput("https://mc.marc.tv/iso/"));
+file_put_contents( 'index.php', $mcviewer->getOutput( "https://mc.marc.tv/iso/" ) );
 
 
-$mcmonitor->saveJSON();
+

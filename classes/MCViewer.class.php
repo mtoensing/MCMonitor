@@ -217,11 +217,9 @@ class MCViewer
             if ($player_meta->isonline) {
                 $status_class = 'online';
                 $status = 'online';
-                $status_user_class = 'text-success';
             } else {
-                $status_class = 'disabled';
+                $status_class = 'text-muted';
                 $status = $this->time2str($player_meta->last_seen);
-                $status_user_class = '';
             }
 
             $html .= '<tr class="' . $status_class .'"><td><span class="dot"></span> ' . $playername . '</td>';
