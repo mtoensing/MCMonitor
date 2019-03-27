@@ -11,6 +11,9 @@ class MCViewer
     public $tpl;
     public $overviewer_url = '';
     public $overviewer_path = false;
+    public $max_players = 0;
+    public $max_seen_online = 0;
+    public $players_online = 0;
 
     public function __construct($json_path)
     {
@@ -88,6 +91,7 @@ class MCViewer
     public function fillTemplate()
     {
         $this->tpl = new MCTemplate("tpl/template.html");
+	    $this->tpl->set("maxplayers", $this->getMaxPlayers());
         $this->tpl->set("playerlist", $this->getPlayerList());
         $this->tpl->set("isonline", $this->getOnlineStatus());
         $this->tpl->set("version", $this->getVersion());
@@ -105,6 +109,15 @@ class MCViewer
         } else {
             $this->tpl->set("overviewer_last_updated", '');
         }
+
+    }
+
+    public function getMaxPlayers(){
+    	$players = 0;
+	    foreach ($this->json->players as $player){
+	        $players++;
+	    }
+    	return $players;
 
     }
 
@@ -143,6 +156,7 @@ class MCViewer
     {
         return $this->players_online;
     }
+
 
 
 
@@ -211,6 +225,7 @@ class MCViewer
     {
         $html = '';
 
+        $this->max_players = count($this->json->players);
 
         foreach ($this->json->players as $playername => $player_meta) {
 

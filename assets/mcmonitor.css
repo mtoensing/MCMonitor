@@ -51,7 +51,7 @@ footer {
 .dot {
     height: 11px;
     width: 11px;
-    background-color: darkred;
+    background-color: #dc3545;
     border-radius: 50%;
     display: inline-block;
     margin-right: 3px;
