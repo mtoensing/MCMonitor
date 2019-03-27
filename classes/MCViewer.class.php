@@ -225,8 +225,6 @@ class MCViewer
     {
         $html = '';
 
-        $this->max_players = count($this->json->players);
-
         foreach ($this->json->players as $playername => $player_meta) {
 
             if ($player_meta->isonline) {
