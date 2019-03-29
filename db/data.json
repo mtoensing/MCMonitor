@@ -1,12 +1,12 @@
 {
     "server": {
         "hostname": "Welcome to the new Pudel Map. Online since 2012.",
-        "address": "u5xvqz2hcvrlrpgm.myfritz.net",
+        "address": "mc.marc.tv",
         "gametype": "Survival Multiplayer",
         "version": "1.13.2",
-        "isonline": true,
-        "last_seen": 1553709247,
+        "isonline": false,
         "players_online": 0,
+        "last_seen": 1553709247,
         "max_seen_online": 2
     },
     "players": {

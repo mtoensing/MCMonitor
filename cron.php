@@ -5,7 +5,7 @@ spl_autoload_register( function ( $class_name ) {
 } );
 
 $mcmonitor = new MCMonitor(
-	"u5xvqz2hcvrlrpgm.myfritz.net",
+	"mc.marc.tv",
 	"25565",
 	1
 );
