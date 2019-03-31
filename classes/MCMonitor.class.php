@@ -19,6 +19,7 @@ class MCMonitor
     public $timeout = 1;
     public $error = Array();
     public $json = '';
+    public $json_path = 'db/data.json';
 
     public $info;
 
@@ -36,6 +37,13 @@ class MCMonitor
     public function setError($error)
     {
         $this->error[] = $error;
+    }
+
+    /**
+     * @param string $json_path
+     */
+    public function setJsonPath( $json_path ) {
+        $this->json_path = $json_path;
     }
 
 

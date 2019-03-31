@@ -10,7 +10,6 @@ class MCViewer
     public $isonline = '';
     public $tpl;
     public $overviewer_url = '';
-    public $overviewer_path = false;
     public $max_players = 0;
     public $max_seen_online = 0;
     public $players_online = 0;
@@ -31,31 +30,6 @@ class MCViewer
 
     }
 
-    /**
-     * @param bool $overviewer_path
-     */
-    public function setOverviewerPath($overviewer_path)
-    {
-        $this->overviewer_path = $overviewer_path;
-    }
-
-
-
-    public function getMapCreatedTime()
-    {
-        if($this->overviewer_path){
-
-            $fullpath = $this->overviewer_path. '/index.html';
-
-            if (file_exists($fullpath)) {
-
-                $map_ts = filemtime($fullpath);
-                $map_created_time = $this->time2str($map_ts);
-
-                return '(generated ' . $map_created_time.')';
-            }
-        }
-    }
 
     /**
      * @return mixed
@@ -102,13 +76,16 @@ class MCViewer
         $this->tpl->set("max_seen_online", $this->getMaxSeenOnline());
         $this->tpl->set("overviewer_url", $this->overviewer_url);
 
-        $created_time = $this->getMapCreatedTime();
+	    $overviewer = new MCOverviewer();
 
-        if($created_time){
-            $this->tpl->set("overviewer_last_updated", $created_time);
-        } else {
-            $this->tpl->set("overviewer_last_updated", '');
-        }
+	    $overviewer_ts = $overviewer->getMapCreatedTS();
+	    $current_status = $overviewer->getRenderStatus();
+
+	    if($current_status != false){
+		    $this->tpl->set("overviewer_last_updated", "(Rendering " . $current_status . ")");
+	    } else {
+		    $this->tpl->set("overviewer_last_updated", "(Rendered " . $this->time2str($overviewer_ts) . ")");
+	    }
 
     }
 
@@ -220,6 +197,8 @@ class MCViewer
 
         return $html;
     }
+
+
 
     public function getPlayerList()
     {
