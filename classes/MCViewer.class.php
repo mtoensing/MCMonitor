@@ -82,7 +82,7 @@ class MCViewer
 	    $current_status = $overviewer->getRenderStatus();
 
 	    if($current_status != false){
-		    $this->tpl->set("overviewer_last_updated", "(Rendering " . $current_status . ")");
+		    $this->tpl->set("overviewer_last_updated", "(Render in progress)");
 	    } else {
 		    $this->tpl->set("overviewer_last_updated", "(Rendered " . $this->time2str($overviewer_ts) . ")");
 	    }
