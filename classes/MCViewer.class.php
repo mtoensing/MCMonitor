@@ -26,8 +26,6 @@ class MCViewer
         $this->hostname = $this->json->server->hostname;
         $this->players_online = $this->json->server->players_online;
         $this->max_seen_online = $this->json->server->max_seen_online;
-
-
     }
 
 
@@ -65,7 +63,7 @@ class MCViewer
     public function fillTemplate()
     {
         $this->tpl = new MCTemplate("tpl/template.html");
-	    $this->tpl->set("maxplayers", $this->getMaxPlayers());
+        $this->tpl->set("maxplayers", $this->getMaxPlayers());
         $this->tpl->set("playerlist", $this->getPlayerList());
         $this->tpl->set("isonline", $this->getOnlineStatus());
         $this->tpl->set("version", $this->getVersion());
@@ -75,27 +73,27 @@ class MCViewer
         $this->tpl->set("players_online", $this->getPlayersOnline());
         $this->tpl->set("max_seen_online", $this->getMaxSeenOnline());
         $this->tpl->set("overviewer_url", $this->overviewer_url);
+        $this->tpl->set("now_date", date("d.m.Y"));
+        $this->tpl->set("now_time", date("H:i"));
 
-	    $overviewer = new MCOverviewer();
+        $overviewer = new MCOverviewer();
+        $overviewer_ts = $overviewer->getMapCreatedTS();
+        $current_status = $overviewer->getRenderStatus();
 
-	    $overviewer_ts = $overviewer->getMapCreatedTS();
-	    $current_status = $overviewer->getRenderStatus();
-
-	    if($current_status != false){
-		    $this->tpl->set("overviewer_last_updated", "(Render in progress)");
-	    } else {
-		    $this->tpl->set("overviewer_last_updated", "(Rendered " . $this->time2str($overviewer_ts) . ")");
-	    }
-
+        if ($current_status != false) {
+            $this->tpl->set("overviewer_last_updated", "(Render in progress)");
+        } else {
+            $this->tpl->set("overviewer_last_updated", "(Rendered " . $this->time2str($overviewer_ts) . ")");
+        }
     }
 
-    public function getMaxPlayers(){
-    	$players = 0;
-	    foreach ($this->json->players as $player){
-	        $players++;
-	    }
-    	return $players;
-
+    public function getMaxPlayers()
+    {
+        $players = 0;
+        foreach ($this->json->players as $player) {
+            $players++;
+        }
+        return $players;
     }
 
     public function getProgressMessage($filepath)
@@ -205,7 +203,6 @@ class MCViewer
         $html = '';
 
         foreach ($this->json->players as $playername => $player_meta) {
-
             if ($player_meta->isonline) {
                 $status_class = 'online';
                 $status = 'online';
@@ -216,8 +213,6 @@ class MCViewer
 
             $html .= '<tr class="' . $status_class .'"><td><span class="dot"></span> ' . $playername . '</td>';
             $html .= '<td>' . $status . '</td></tr>';
-
-
         }
 
         $html .= '';

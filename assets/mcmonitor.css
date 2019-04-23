@@ -15,6 +15,7 @@
 body {
     background-image: url('mcbg.jpg');
     background-color: #CFC3E1;
+    background-attachment:fixed;
     background-size: cover;
 }
 
