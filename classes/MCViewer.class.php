@@ -18,7 +18,7 @@ class MCViewer
     {
         $string = file_get_contents($json_path);
         $this->json = json_decode($string);
-
+        
         $this->version = $this->json->server->version;
         $this->gametype = $this->json->server->gametype;
         $this->isonline = $this->json->server->isonline;
