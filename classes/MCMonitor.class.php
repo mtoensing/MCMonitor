@@ -87,6 +87,11 @@ class MCMonitor
         $arr['gametype'] = $this->json->server->gametype;
         $arr['version'] = $this->json->server->version;
 
+        /* ckeck for new version */
+        if( $this->json->server->version > 1 AND $this->json->server->version < $this->version){
+            $arr['version'] = $this->version;
+        }
+
         if ($this->isOnline()) {
             $arr['isonline'] = true;
             $arr['last_seen'] = time();
