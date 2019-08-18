@@ -11,7 +11,3 @@ $mcmonitor = new MCMonitor(
 );
 
 $mcmonitor->saveJSON();
-
-
-
-

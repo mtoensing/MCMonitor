@@ -3,6 +3,10 @@
 
 }
 
+.text-warning-dark {
+  color: #ff8c00;
+}
+
 .online {
     color: darkgreen;
     letter-spacing: 0.1em;

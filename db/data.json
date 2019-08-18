@@ -3,13 +3,46 @@
         "hostname": "Welcome to the new Pudel Map. Online since 2012.",
         "address": "mc.marc.tv",
         "gametype": "Survival Multiplayer",
-        "version": "1.13.2",
-        "isonline": false,
-        "players_online": 0,
-        "last_seen": 1553709247,
-        "max_seen_online": 2
+        "version": "1.14.4",
+        "tps": 0,
+        "isonline": true,
+        "last_seen": 1566153959,
+        "players_online": 6,
+        "max_seen_online": 6
     },
     "players": {
+        "IRepazZI": {
+            "isonline": true,
+            "last_seen": 1566153959
+        },
+        "Astroncore": {
+            "isonline": true,
+            "last_seen": 1566153959
+        },
+        "GrinseVeith": {
+            "isonline": true,
+            "last_seen": 1566153959
+        },
+        "Peddedou": {
+            "isonline": true,
+            "last_seen": 1566153959
+        },
+        "BENUSIM": {
+            "isonline": true,
+            "last_seen": 1566153959
+        },
+        "LordBacchus": {
+            "isonline": true,
+            "last_seen": 1566153959
+        },
+        "guju99": {
+            "isonline": false,
+            "last_seen": 1566153502
+        },
+        "Moeeedigga": {
+            "isonline": false,
+            "last_seen": 1566152673
+        },
         "hansirockt": {
             "isonline": false,
             "last_seen": 1553202557
@@ -25,10 +58,6 @@
         "BlockBastian90": {
             "isonline": false,
             "last_seen": 1553105102
-        },
-        "LordBacchus": {
-            "isonline": false,
-            "last_seen": 1553036101
         },
         "fol_ssve": {
             "isonline": false,

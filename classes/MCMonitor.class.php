@@ -9,7 +9,6 @@
 
 class MCMonitor
 {
-
     public $query;
     public $online = false;
     public $online_status = 'offline';
@@ -17,7 +16,7 @@ class MCMonitor
     public $port = 25565;
     public $hostname = '';
     public $timeout = 1;
-    public $error = Array();
+    public $error = array();
     public $json = '';
     public $json_path = 'db/data.json';
 
@@ -25,11 +24,13 @@ class MCMonitor
 
     public $gametype = '';
     public $version = 0;
+    public $tps_txt_path = ''; // txt file
+    public $tps = 0;
     public $players_online = 0;
     public $max_players_seen = 0;
     public $players;
 
-    public $meta = Array();
+    public $meta = array();
 
     /**
      * @param string $error
@@ -42,17 +43,33 @@ class MCMonitor
     /**
      * @param string $json_path
      */
-    public function setJsonPath( $json_path ) {
+    public function setJsonPath($json_path)
+    {
         $this->json_path = $json_path;
     }
 
-
-    public function __construct($address, $port, $timeout)
+    public function getTPSfromfile()
     {
+        if ($this->tps_txt_path != '' && file_exists($this->tps_txt_path)) {
 
+            $file = file_get_contents($this->tps_txt_path);
+            $file_arr = explode(",", $file);
+            $string = explode(":", $file_arr[2]);
+            $tps_1min_av = $string[1];
+            if ($tps_1min_av == false || $tps_1min_av == '') {
+                $this->tps = 0;
+            } else {
+                $this->tps = trim($tps_1min_av);
+            }
+        }
+    }
+
+    public function __construct($address, $port, $timeout,$tps_txt_path = '')
+    {
         $this->address = $address;
         $this->port = $port;
         $this->timeout = $timeout;
+        $this->tps_txt_path = $tps_txt_path;
 
         $this->connect();
         $this->getDatafromDB();
@@ -61,12 +78,12 @@ class MCMonitor
             echo $this->getError();
         }
 
+        $this->getTPSfromfile();
         $this->fillPlayers($this->json->players);
         $this->fillPlayers($this->query->GetPlayers(), true);
         $this->fillMeta();
 
         arsort($this->players);
-
     }
 
     public function saveJSON()
@@ -80,15 +97,16 @@ class MCMonitor
 
     public function fillMeta()
     {
-        $arr = Array();
+        $arr = array();
 
         $arr['hostname'] = $this->hostname;
         $arr['address'] = $this->address;
         $arr['gametype'] = $this->json->server->gametype;
         $arr['version'] = $this->json->server->version;
+        $arr['tps'] = $this->tps;
 
         /* ckeck for new version */
-        if( $this->json->server->version > 1 AND $this->json->server->version < $this->version){
+        if ($this->json->server->version > 1 and $this->json->server->version < $this->version) {
             $arr['version'] = $this->version;
         }
 
@@ -103,21 +121,19 @@ class MCMonitor
                 $arr['max_seen_online'] = $this->json->server->max_seen_online;
             }
         } else {
-
             $arr['isonline'] = false;
-            $arr['hostname'] = $this->json->server->hostname;;
+            $arr['hostname'] = $this->json->server->hostname;
+            ;
             $arr['players_online'] = 0;
             $arr['last_seen'] = $this->json->server->last_seen;
             $arr['max_seen_online'] = $this->json->server->max_seen_online;
         }
 
         $this->meta = $arr;
-
     }
 
     public function getJSON()
     {
-
         $arr = array();
 
         $arr['server'] = $this->meta;
@@ -125,12 +141,10 @@ class MCMonitor
         $arr['players'] = $this->players;
 
         return json_encode($arr, JSON_PRETTY_PRINT);
-
     }
 
     public function getOnlinePlayerNumber()
     {
-
         $this->fillPlayers($this->json->players);
         $this->fillPlayers($this->query->GetPlayers(), true);
 
@@ -154,7 +168,6 @@ class MCMonitor
      */
     public function getError()
     {
-
         if (count($this->error) > 0) {
             foreach ($this->error as $error_msg) {
                 $errors_html = $error_msg . '<br>';
@@ -163,7 +176,6 @@ class MCMonitor
         } else {
             return false;
         }
-
     }
 
     public function getDatafromDB()
@@ -182,16 +194,13 @@ class MCMonitor
         }
 
         $this->getLIVEData();
-
     }
 
 
     public function fillPlayers($players, $online_status = false)
     {
         if ($players !== false) {
-
             foreach ($players as $player => $player_value) {
-
                 $player_name = htmlspecialchars($player);
                 if (is_array($players)) {
                     $player_name = htmlspecialchars($player_value);
@@ -207,10 +216,8 @@ class MCMonitor
                 $player_obj->setIsonline($online_status);
 
                 $this->players[$player_name] = $player_obj;
-
             }
         }
-
     }
 
     private function isJson($string)
@@ -238,19 +245,15 @@ class MCMonitor
 
     public function getLIVEData()
     {
-
         $this->info = $this->query->GetInfo();
         $this->version = $this->info["Version"];
         $this->hostname = $this->info["HostName"];
         $this->getLIVEGameType();
-
-
     }
 
 
     public function getLIVEGameType()
     {
-
         $gametype_raw = $this->info["GameType"];
 
         switch ($gametype_raw) {
@@ -266,7 +269,6 @@ class MCMonitor
             default:
                 $this->gametype = "???";
         }
-
     }
 
 
@@ -291,16 +293,10 @@ class MCMonitor
      */
     public function getOnlineStatus()
     {
-
         if ($this->isOnline()) {
             return "online";
         } else {
             return "offline";
         }
     }
-
-
-
 }
-
-?>

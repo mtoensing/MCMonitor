@@ -18,8 +18,9 @@ class MCViewer
     {
         $string = file_get_contents($json_path);
         $this->json = json_decode($string);
-        
+
         $this->version = $this->json->server->version;
+        $this->tps = $this->json->server->tps;
         $this->gametype = $this->json->server->gametype;
         $this->isonline = $this->json->server->isonline;
         $this->address = $this->json->server->address;
@@ -35,6 +36,33 @@ class MCViewer
     public function getOverviewerUrl()
     {
         return $this->overviewer_url;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTPS()
+    {
+        $tps = round($this->tps,1);
+        $tps_rounded = round($this->tps);
+        $html = '';
+
+        switch (true) {
+          case $tps_rounded <= 16:
+            $tps_string = '<span class="text-warning-dark">' . $tps . '</span>/20';
+            break;
+          case $tps_rounded <= 10:
+            $tps_string = '<span class="text-danger">' . $tps . '</span>/20';
+            break;
+          default:
+            $tps_string = '<span class="text-muted">' . $tps . '</span>/20';
+        }
+
+        if( $tps_rounded > 0 ){
+          $html = '<tr><td>TPS</td><td>' . $tps_string . ' <span class="text-muted">(Average last minute)</span></td></tr>';
+        }
+
+        return $html;
     }
 
     /**
@@ -67,6 +95,7 @@ class MCViewer
         $this->tpl->set("playerlist", $this->getPlayerList());
         $this->tpl->set("isonline", $this->getOnlineStatus());
         $this->tpl->set("version", $this->getVersion());
+        $this->tpl->set("tps", $this->getTPS());
         $this->tpl->set("address", $this->getAddress());
         $this->tpl->set("hostname", $this->getHostname());
         $this->tpl->set("gametype", $this->getGametype());
@@ -131,9 +160,6 @@ class MCViewer
     {
         return $this->players_online;
     }
-
-
-
 
     /**
      * @return string
