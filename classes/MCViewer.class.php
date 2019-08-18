@@ -55,7 +55,7 @@ class MCViewer
             $tps_string = '<span class="text-danger">' . $tps . '</span>/20';
             break;
           default:
-            $tps_string = '<span class="text-muted">' . $tps . '</span>/20';
+            $tps_string = '<span class="text-success">' . $tps . '</span>/20';
         }
 
         if( $tps_rounded > 0 ){
