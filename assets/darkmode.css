@@ -1,0 +1,54 @@
+@media (prefers-color-scheme: dark) {
+    body {
+        background-image: url('mcbg-dark.jpg');
+        background-color: #111;
+    }
+
+    html .table {
+        color:#fff;
+    }
+
+    html .online .dot {
+      background-color: #02ca02;
+    }
+
+    html .online {
+      color: #02ca02;
+    }
+
+    html .text-muted {
+        color: #8895a0 ! important;
+    }
+
+    html .table thead th {
+      border-bottom: 2px solid #111;
+    }
+    html thead {
+      background-color: #414950;
+    }
+
+    html .table td,
+    html .table th {
+          border-top: 1px solid #111;
+    }
+    html .table-striped tbody tr {
+      background-color: #414950;
+    }
+
+    html .list-group-item {
+      background-color: #343a40;
+      color: #fff;
+    }
+
+    html .table-striped tbody tr:nth-of-type(odd){
+        background-color: #343a40;
+    }
+
+
+    html .page-footer {
+      background-color: #222;
+      color:#a0a0a0;
+    }
+
+
+}
