@@ -7,6 +7,8 @@ class MCViewer
     public $hostname ='';
     public $gametype ='';
     public $version ='';
+    public $paperversion='';
+    public $latest = '';
     public $isonline = '';
     public $tpl;
     public $overviewer_url = '';
@@ -22,6 +24,8 @@ class MCViewer
         $this->version = $this->json->server->version;
         $this->tps = $this->json->server->tps;
         $this->paperversion = $this->json->server->paperversion;
+        $this->paperversion = $this->json->server->paperversion;
+        $this->latest_version = $this->json->server->latest_version;
         $this->gametype = $this->json->server->gametype;
         $this->isonline = $this->json->server->isonline;
         $this->address = $this->json->server->address;
@@ -44,7 +48,7 @@ class MCViewer
      */
     public function getTPS()
     {
-        $tps = round($this->tps,1);
+        $tps = round($this->tps, 1);
         $tps_rounded = round($this->tps);
         $html = '';
 
@@ -59,8 +63,8 @@ class MCViewer
             $tps_string = '<span>' . $tps . '</span>/20';
         }
 
-        if( $tps_rounded > 0 ){
-          $html = '<tr><td>TPS</td><td>' . $tps_string . ' <span class="text-muted">(Average last minute)</span></td></tr>';
+        if ($tps_rounded > 0) {
+            $html = '<tr><td>TPS</td><td>' . $tps_string . ' <span class="text-muted">(Average last minute)</span></td></tr>';
         }
 
         return $html;
@@ -96,6 +100,8 @@ class MCViewer
         $this->tpl->set("playerlist", $this->getPlayerList());
         $this->tpl->set("isonline", $this->getOnlineStatus());
         $this->tpl->set("version", $this->getVersion());
+        $this->tpl->set("paperversion", $this->getPaperVersion());
+        $this->tpl->set("latest", $this->isLatestVersion());
         $this->tpl->set("tps", $this->getTPS());
         $this->tpl->set("address", $this->getAddress());
         $this->tpl->set("hostname", $this->getHostname());
@@ -183,7 +189,27 @@ class MCViewer
      */
     public function getVersion()
     {
-        return $this->version.' ('.$this->paperversion.')';
+        return $this->version;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaperVersion()
+    {
+        return $this->paperversion;
+    }
+
+    /**
+     * @return string
+     */
+    public function isLatestVersion()
+    {
+        if ($this->latest_version > 0) {
+            return " (latest)";
+        } else {
+            return false;
+        }
     }
 
     /**

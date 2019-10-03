@@ -28,6 +28,7 @@ class MCMonitor
     public $paperversion_txt_path = ''; // txt file
     public $tps = 0;
     public $paperversion = 0;
+    public $latest_version = 0;
     public $players_online = 0;
     public $max_players_seen = 0;
     public $players;
@@ -78,6 +79,10 @@ class MCMonitor
             settype($version,"int");
 
             $this->paperversion = $version;
+
+            if($lines[2] == "You are running the latest version") {
+              $this->latest_version = 1;
+            }
         }
     }
 
@@ -124,6 +129,7 @@ class MCMonitor
         $arr['version'] = $this->json->server->version;
         $arr['tps'] = $this->tps;
         $arr['paperversion'] = $this->paperversion;
+        $arr['latest_version'] = $this->latest_version;
 
         /* ckeck for new version */
         if ($this->json->server->version > 1 and $this->json->server->version < $this->version) {
