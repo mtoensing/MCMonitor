@@ -1,0 +1,4 @@
+This server is running Paper version git-Paper-209 (MC: 1.14.4) (Implementing API version 1.14.4-R0.1-SNAPSHOT)
+Previous version: git-Paper-207 (MC: 1.14.4)
+You are running the latest version
+

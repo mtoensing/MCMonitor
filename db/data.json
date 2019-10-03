@@ -4,35 +4,36 @@
         "address": "mc.marc.tv",
         "gametype": "Survival Multiplayer",
         "version": "1.14.4",
-        "tps": 0,
+        "tps": "20.0",
+        "paperversion": 209,
         "isonline": true,
-        "last_seen": 1566154208,
-        "players_online": 6,
+        "last_seen": 1570090611,
+        "players_online": 0,
         "max_seen_online": 6
     },
     "players": {
         "IRepazZI": {
-            "isonline": true,
+            "isonline": false,
             "last_seen": 1566154208
         },
         "Astroncore": {
-            "isonline": true,
+            "isonline": false,
             "last_seen": 1566154208
         },
         "GrinseVeith": {
-            "isonline": true,
+            "isonline": false,
             "last_seen": 1566154208
         },
         "Peddedou": {
-            "isonline": true,
+            "isonline": false,
             "last_seen": 1566154208
         },
         "BENUSIM": {
-            "isonline": true,
+            "isonline": false,
             "last_seen": 1566154208
         },
         "LordBacchus": {
-            "isonline": true,
+            "isonline": false,
             "last_seen": 1566154208
         },
         "guju99": {

@@ -21,6 +21,7 @@ class MCViewer
 
         $this->version = $this->json->server->version;
         $this->tps = $this->json->server->tps;
+        $this->paperversion = $this->json->server->paperversion;
         $this->gametype = $this->json->server->gametype;
         $this->isonline = $this->json->server->isonline;
         $this->address = $this->json->server->address;
@@ -182,7 +183,7 @@ class MCViewer
      */
     public function getVersion()
     {
-        return $this->version;
+        return $this->version.' ('.$this->paperversion.')';
     }
 
     /**

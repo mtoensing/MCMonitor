@@ -25,7 +25,9 @@ class MCMonitor
     public $gametype = '';
     public $version = 0;
     public $tps_txt_path = ''; // txt file
+    public $paperversion_txt_path = ''; // txt file
     public $tps = 0;
+    public $paperversion = 0;
     public $players_online = 0;
     public $max_players_seen = 0;
     public $players;
@@ -64,12 +66,28 @@ class MCMonitor
         }
     }
 
-    public function __construct($address, $port, $timeout,$tps_txt_path = '')
+    public function getPaperVersionfromfile()
+    {
+        if ($this->paperversion_txt_path != '' && file_exists($this->paperversion_txt_path)) {
+
+            $file = file_get_contents($this->paperversion_txt_path);
+            $lines = explode("\n", $file);
+            $version = strstr($lines[0], '(', true);
+            $version = strstr($version, 'Paper-', false);
+            $version = str_replace('Paper-','',$version);
+            settype($version,"int");
+
+            $this->paperversion = $version;
+        }
+    }
+
+    public function __construct($address, $port, $timeout,$tps_txt_path = '', $paperversion_txt_path = '')
     {
         $this->address = $address;
         $this->port = $port;
         $this->timeout = $timeout;
         $this->tps_txt_path = $tps_txt_path;
+        $this->paperversion_txt_path = $paperversion_txt_path;
 
         $this->connect();
         $this->getDatafromDB();
@@ -79,6 +97,7 @@ class MCMonitor
         }
 
         $this->getTPSfromfile();
+        $this->getPaperVersionfromfile();
         $this->fillPlayers($this->json->players);
         $this->fillPlayers($this->query->GetPlayers(), true);
         $this->fillMeta();
@@ -104,6 +123,7 @@ class MCMonitor
         $arr['gametype'] = $this->json->server->gametype;
         $arr['version'] = $this->json->server->version;
         $arr['tps'] = $this->tps;
+        $arr['paperversion'] = $this->paperversion;
 
         /* ckeck for new version */
         if ($this->json->server->version > 1 and $this->json->server->version < $this->version) {

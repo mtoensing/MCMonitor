@@ -7,7 +7,9 @@ spl_autoload_register( function ( $class_name ) {
 $mcmonitor = new MCMonitor(
 	"mc.marc.tv",
 	"25565",
-	1
+	1,
+	'stats/tps.txt',
+	'stats/version.txt'
 );
 
 $mcmonitor->saveJSON();
